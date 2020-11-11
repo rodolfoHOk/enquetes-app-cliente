@@ -1,0 +1,128 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import './Cabecalho.css';
+import {
+  Layout, Menu, Dropdown,
+} from 'antd';
+import { HomeOutlined, UserOutlined, DownOutlined } from '@ant-design/icons';
+import pollIcon from '../poll.svg';
+
+const { Header } = Layout;
+
+/**
+ * Componente de cabeçalho que renderiza botões Login e Inscrição para usuários não autenticados
+ * e botões Início, Perfil e Criar Enquete para usuários autenticados.
+ */
+class Cabecalho extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleMenuClick = this.handleMenuClick.bind(this);
+  }
+
+  handleMenuClick({ key }) {
+    // eslint-disable-next-line prefer-template
+    console.log('menu foi clicado. key: ' + key);
+    if (key === 'deslogar') {
+      const { onDeslogar } = this.props;
+      onDeslogar();
+    }
+  }
+
+  render() {
+    let menuItems;
+    // eslint-disable-next-line react/prop-types
+    const { usuarioAtual } = this.props;
+    if (usuarioAtual) {
+      menuItems = [
+        <Menu.Item key="/">
+          <Link to="/">
+            <HomeOutlined />
+          </Link>
+        </Menu.Item>,
+        <Menu.Item key="/enquete/nova">
+          <Link to="/enquete/nova">
+            <img src={pollIcon} alt="enquete" className="poll-icon" />
+          </Link>
+        </Menu.Item>,
+        <Menu.Item key="/perfil" className="profile-menu">
+          <PerfilDropdownMenu
+            usuarioAtual={usuarioAtual}
+            handleMenuClick={this.handleMenuClick}
+          />
+        </Menu.Item>,
+      ];
+    } else {
+      menuItems = [
+        <Menu.Item key="/logar">
+          <Link to="/logar">Logar</Link>
+        </Menu.Item>,
+        <Menu.Item key="/inscrever">
+          <Link to="/inscrever">Inscrever-se</Link>
+        </Menu.Item>,
+      ];
+    }
+    // eslint-disable-next-line react/prop-types
+    const { location } = this.props;
+    return (
+      <Header className="app-header">
+        <div className="container">
+          <div className="app-title">
+            <Link to="/">App de Enquetes</Link>
+          </div>
+          <Menu
+            className="app-menu"
+            mode="horizontal"
+            // eslint-disable-next-line react/prop-types
+            selectedKeys={[location.pathname]}
+            style={{ lineHeight: '64px' }}
+          >
+            {menuItems}
+          </Menu>
+        </div>
+      </Header>
+    );
+  }
+}
+
+function PerfilDropdownMenu(props) {
+  // eslint-disable-next-line react/prop-types
+  const { handleMenuClick, usuarioAtual } = props;
+  const dropdownMenu = (
+    <Menu onClick={handleMenuClick} className="profile-dropdown-menu">
+      <Menu.Item key="usuario-info" className="dropdown-item" disabled>
+        <div className="user-full-name-info">
+          {usuarioAtual.nome}
+        </div>
+        <div className="username-info">
+          @
+          {usuarioAtual.nomeUsuario}
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="perfil" className="dropdown-item">
+        <Link to={`/usuarios/${usuarioAtual.nomeUsuario}`}>Perfil</Link>
+      </Menu.Item>
+      <Menu.Item key="deslogar" className="dropdown-item">
+        Deslogar
+      </Menu.Item>
+    </Menu>
+  );
+
+  return (
+    <Dropdown
+      overlay={dropdownMenu}
+      trigger={['click']}
+      getPopupContainer={() => document.getElementsByClassName('profile-menu')[0]}
+    >
+      <a className="ant-dropdown-link">
+        <UserOutlined />
+        {' '}
+        <DownOutlined />
+      </a>
+    </Dropdown>
+  );
+}
+
+export default withRouter(Cabecalho);

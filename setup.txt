@@ -1,0 +1,110 @@
+1 - Vamos criar o aplicativo usando a ferramenta create-react-app digitando o seguinte comando:
+  "npx create-react-app votacao-app-cliente"
+
+2 - Instalando Dependências Adicionais
+
+  Usaremos as seguintes dependências adicionais em nosso projeto:
+
+  A - And Design: Uma excelente biblioteca de interface do usuário baseada em reação para projetar a 
+  interface do usuário.
+  B - React Router: solução de roteamento do lado do cliente para aplicativos react.
+
+  Vamos instalar essas dependências digitando o seguinte comando:
+  
+  "cd votacao-app-cliente"
+  "yarn add antd react-router-dom"
+
+3 - Também precisaremos de algumas dev dependências para personalizar o tema do Ant Design e
+  habilitar a importação de componentes sob demanda. Digite o seguinte comando para instalar
+  essas dependências de desenvolvimento:
+
+  "yarn add react-app-rewired babel-plugin-import react-app-rewire-less --dev"
+
+4 - Agora vamos configurar o design do antd e personalizar seu tema substituindo algumas variáveis.
+  Usando react-app-rewired para personalizar a configuração do webpack padrão.
+  Usaremos react-app-rewired para permitir a personalização.
+  Abra o arquivo package.json e substitua os seguintes scripts:
+  
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+
+  por estes scripts:
+
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+
+  Substituindo configurações com config-overrides.js
+  Agora crie um arquivo chamado config-overrides.js no diretório raiz do projeto e
+    adicione o seguinte código a ele:
+
+      const { injectBabelPlugin } = require('react-app-rewired');
+      const rewireLess = require('react-app-rewire-less');
+
+      module.exports = function override(config, env) {
+          config = injectBabelPlugin(['import', { libraryName: 'antd', style: true }], config);
+          config = rewireLess.withLoaderOptions({
+            modifyVars: {
+                "@layout-body-background": "#FFFFFF",
+                "@layout-header-background": "#FFFFFF",
+                "@layout-footer-background": "#FFFFFF"
+            },
+            javascriptEnabled: true
+          })(config, env);
+          return config;
+      };
+
+  Observe como estamos substituindo as variáveis less padrão do Ant Design para personalizar o
+    tema de acordo com nossas necessidades.
+
+5 - Executando o aplicativo
+  Concluímos todas as configurações. Vamos executar o aplicativo digitando o seguinte comando:
+  
+  "yarn start"
+  
+
+6 - Instalando eslint airbnb no projeto:
+
+  "npx install-peerdeps --dev eslint-config-airbnb"
+
+  "yarn add babel-eslint babel-plugin-import --dev"
+
+  criar o arquivo .eslintrc.js com o codigo:
+    
+module.exports = {
+  env: {
+    browser: true,
+    es6: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+  ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+  ],
+  rules: {
+    'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
+  },
+};
+
+  instalar a extensão do vscode do Eslint de não estiver instalado
