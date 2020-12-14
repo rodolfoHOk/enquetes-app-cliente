@@ -27,6 +27,11 @@ const Logar = (props) => {
             message: 'App de Enquetes',
             description: 'Seu nome de usuário ou senha está incorreta. Por favor tente novamente!',
           });
+        } else if (error.sucesso === false) {
+          notification.error({
+            message: 'App de Enquetes',
+            description: error.mensagem,
+          });
         } else {
           notification.error({
             message: 'App de Enquetes',

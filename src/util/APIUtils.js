@@ -127,3 +127,12 @@ export function getEnquetesVotadasUsuario(nomeUsuario, pagina, tamanho) {
     method: 'GET',
   });
 }
+
+// adicionado para reenviar email verificacão
+export function reenviarEmailVerificacao(email) {
+  return requisicao({
+    url: API_BASE_URL + '/auten/reenviar-email',
+    method: 'POST',
+    body: JSON.stringify(email),
+  });
+}

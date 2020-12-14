@@ -286,7 +286,7 @@ class Inscrever extends Component {
       .then((response) => {
         notification.success({
           message: 'App de Enquetes',
-          description: 'Obrigado! Você está registrado com sucesso. Por favor faça o login para continuar!',
+          description: 'Obrigado! Você está registrado com sucesso. Um email de confirmação foi enviado a você!',
         });
         // eslint-disable-next-line react/prop-types
         const { history } = this.props;

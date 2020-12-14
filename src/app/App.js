@@ -14,6 +14,8 @@ import EnqueteLista from '../enquete/EnqueteLista';
 import NovaEnquete from '../enquete/NovaEnquete';
 import Logar from '../usuario/login/Logar';
 import Inscrever from '../usuario/signup/Inscrever';
+import ConfirmacaoSucesso from '../usuario/confirmacao/ConfirmacaoSucesso';
+import ConfirmacaoErro from '../usuario/confirmacao/ConfirmacaoErro';
 import Perfil from '../usuario/profile/Perfil';
 import Cabecalho from '../common/Cabecalho';
 import NotFound from '../common/NotFound';
@@ -139,6 +141,8 @@ class App extends React.Component {
                 render={(props) => <Logar onLogin={this.handleLogar} {...props} />}
               />
               <Route path="/inscrever" component={Inscrever} />
+              <Route path="/confirmacao-conta/sucesso" component={ConfirmacaoSucesso} />
+              <Route path="/confirmacao-conta/erro" component={ConfirmacaoErro} />
               <Route
                 path="/usuarios/:nomeUsuario"
                 render={(props) => (
