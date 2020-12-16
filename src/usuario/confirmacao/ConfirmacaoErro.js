@@ -78,23 +78,25 @@ class ConfirmacaoErro extends React.Component {
         <p> Pode ser que o tempo de verificação expirou.</p>
         <br />
         <p> Caso queira solicitar um novo email para verificação. Preencha o campo abaixo:</p>
-        <Form onFinish={submit} className="login-form">
-          <Form.Item label="Email">
-            <Input
-              name="email"
-              type="email"
-              autoComplete="off"
-              placeholder="Email cadastrado"
-              value={email}
-              onChange={(event) => this.setState({ email: event.target.value })}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" size="large" className="confirmacao-form-button">
-              Enviar
-            </Button>
-          </Form.Item>
-        </Form>
+        <div className="login-content">
+          <Form onFinish={submit} className="login-form">
+            <Form.Item label="Email">
+              <Input
+                name="email"
+                type="email"
+                autoComplete="off"
+                placeholder="Email cadastrado"
+                value={email}
+                onChange={(event) => this.setState({ email: event.target.value })}
+              />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit" size="large" className="confirmacao-form-button">
+                Enviar
+              </Button>
+            </Form.Item>
+          </Form>
+        </div>
       </div>
     );
   }

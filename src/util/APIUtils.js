@@ -136,3 +136,21 @@ export function reenviarEmailVerificacao(email) {
     body: JSON.stringify(email),
   });
 }
+
+// adicionado para esqueci senha
+export function esqueciSenha(email) {
+  return requisicao({
+    url: API_BASE_URL + '/auten/esqueci-senha',
+    method: 'POST',
+    body: JSON.stringify(email),
+  });
+}
+
+// adicionado para esqueci senha
+export function mudarSenha(mudarSenhaRequisicao) {
+  return requisicao({
+    url: API_BASE_URL + '/auten/mudar-senha',
+    method: 'POST',
+    body: JSON.stringify(mudarSenhaRequisicao),
+  });
+}

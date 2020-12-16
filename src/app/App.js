@@ -16,6 +16,9 @@ import Logar from '../usuario/login/Logar';
 import Inscrever from '../usuario/signup/Inscrever';
 import ConfirmacaoSucesso from '../usuario/confirmacao/ConfirmacaoSucesso';
 import ConfirmacaoErro from '../usuario/confirmacao/ConfirmacaoErro';
+import EsqueciSenha from '../usuario/senha/EsqueciSenha';
+import MudarSenha from '../usuario/senha/MudarSenha';
+import MudarSenhaErro from '../usuario/senha/MudarSenhaErro';
 import Perfil from '../usuario/profile/Perfil';
 import Cabecalho from '../common/Cabecalho';
 import NotFound from '../common/NotFound';
@@ -143,6 +146,9 @@ class App extends React.Component {
               <Route path="/inscrever" component={Inscrever} />
               <Route path="/confirmacao-conta/sucesso" component={ConfirmacaoSucesso} />
               <Route path="/confirmacao-conta/erro" component={ConfirmacaoErro} />
+              <Route path="/esqueci-senha" component={EsqueciSenha} />
+              <Route path="/mudar-senha/mudar" component={MudarSenha} />
+              <Route path="/mudar-senha/erro" component={MudarSenhaErro} />
               <Route
                 path="/usuarios/:nomeUsuario"
                 render={(props) => (

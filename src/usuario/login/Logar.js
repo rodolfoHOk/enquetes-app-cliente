@@ -65,9 +65,13 @@ const Logar = (props) => {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" size="large" className="login-form-button">Logar</Button>
-            Or
+            Ou
             {' '}
             <Link to="/inscrever">Inscrever-se Agora!</Link>
+            <br />
+            Ou
+            {' '}
+            <Link to="/esqueci-senha">Esqueci a Senha</Link>
           </Form.Item>
         </Form>
       </div>
