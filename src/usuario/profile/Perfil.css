@@ -60,6 +60,11 @@
     margin-top: 5px;
 }
 
+.user-profile-edit {
+  margin-top: 5px;
+  text-align: right;
+}
+
 @media (max-width: 768px) {
     .user-summary .full-name {
         font-size: 24px;

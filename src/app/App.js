@@ -20,6 +20,7 @@ import EsqueciSenha from '../usuario/senha/EsqueciSenha';
 import MudarSenha from '../usuario/senha/MudarSenha';
 import MudarSenhaErro from '../usuario/senha/MudarSenhaErro';
 import Perfil from '../usuario/profile/Perfil';
+import EditarPerfil from '../usuario/profile/EditarPerfil';
 import Cabecalho from '../common/Cabecalho';
 import NotFound from '../common/NotFound';
 import IndicadorCarregamento from '../common/IndicadorCarregamento';
@@ -155,6 +156,18 @@ class App extends React.Component {
                   <Perfil
                     isAutenticado={isAutenticado}
                     usuarioAtual={usuarioAtual}
+                    // eslint-disable-next-line react/jsx-props-no-spreading
+                    {...props}
+                  />
+                )}
+              />
+              <Route
+                path="/perfil/editar"
+                render={(props) => (
+                  <EditarPerfil
+                    isAutenticado={isAutenticado}
+                    usuarioAtual={usuarioAtual}
+                    handleDeslogar={this.handleDeslogar}
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...props}
                   />

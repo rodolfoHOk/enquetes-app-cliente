@@ -154,3 +154,20 @@ export function mudarSenha(mudarSenhaRequisicao) {
     body: JSON.stringify(mudarSenhaRequisicao),
   });
 }
+
+// adicionado editar usuario
+export function getUsuarioCompleto(id) {
+  return requisicao({
+    url: API_BASE_URL + '/usuarios/' + id + '/atualizar',
+    method: 'GET',
+  });
+}
+
+// adicionado editar usuario
+export function atualizarUsuario(id, atualizarUsuarioRequisicao) {
+  return requisicao({
+    url: API_BASE_URL + '/usuarios/' + id + '/atualizar',
+    method: 'PUT',
+    body: JSON.stringify(atualizarUsuarioRequisicao),
+  });
+}

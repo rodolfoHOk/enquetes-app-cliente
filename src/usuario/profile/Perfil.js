@@ -1,5 +1,6 @@
 /* eslint-disable prefer-template */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Avatar, Tabs } from 'antd';
 import EnqueteLista from '../../enquete/EnqueteLista';
 import { getPerfilUsuario } from '../../util/APIUtils';
@@ -122,8 +123,12 @@ class Perfil extends React.Component {
                     {usuario.nomeUsuario}
                   </div>
                   <div className="user-joined">
-                    Joined
+                    Ingressou:
+                    {' '}
                     {formatarData(usuario.entrouEm)}
+                  </div>
+                  <div className="user-profile-edit">
+                    <Link to="/perfil/editar">Editar Perfil</Link>
                   </div>
                 </div>
               </div>
